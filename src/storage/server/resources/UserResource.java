@@ -25,9 +25,9 @@ public class UserResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getListOfUser() throws Exception {
-        String quote = DataImplementation.getListOfUser();
-        if (quote != null) {
-            return Response.ok(quote).build();
+        String userList = DataImplementation.getListOfUser();
+        if (userList != null) {
+            return Response.ok(userList).build();
         }
         else {
             return Response.status(404).build();
@@ -39,9 +39,9 @@ public class UserResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getUserDetail() throws Exception {
-        String quote = DataImplementation.getUserDetail(1);
-        if (quote != null) {
-            return Response.ok(quote).build();
+        String user = DataImplementation.getUserDetail(1);
+        if (user != null) {
+            return Response.ok(user).build();
         }
         else {
             return Response.status(404).build();

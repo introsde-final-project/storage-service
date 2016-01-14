@@ -1,12 +1,10 @@
 package storage.server.resources;
 
-import data.server.DataImplementation;
+import data.server.GoalImplementation;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,26 +17,72 @@ import javax.ws.rs.core.Response;
 @Path("/goal")
 public class GoalResource {
     @GET
-    @Produces({ MediaType.APPLICATION_JSON})
-    public Response getListOfUser() throws Exception {
-        String quote = DataImplementation.getListOfUser();
-        if (quote != null) {
-            return Response.ok(quote).build();
-        }
-        else {
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getGoalList() throws Exception {
+        System.out.println("Getting the list of goal...");
+        String goalList = GoalImplementation.getGoalList();
+        if (goalList != null) {
+            return Response.ok(goalList).build();
+        } else {
             return Response.status(404).build();
         }
     }
+
+    //    @Path("{goalId}")
+    @Path("1")
     @GET
-    @Path("/1")
-    public Response getUserDetail() throws Exception {
-        String quote = DataImplementation.getUserDetail(1);
-        if (quote != null) {
-            return Response.ok(quote).build();
-        }
-        else {
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getGoalById() throws Exception {
+        System.out.println("Getting goal with id: 1 ...");
+        String goal = GoalImplementation.getGoalById(1);
+        if (goal != null) {
+            return Response.ok(goal).build();
+        } else {
             return Response.status(404).build();
         }
 
+    }
+
+    //    @Path("{goalName}")
+    String goalN = "dec-weight";
+    @Path("dec-weight")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response getGoalByName() throws Exception {
+        System.out.println("Getting goal with the name: " + goalN +" ...");
+        String goal = GoalImplementation.getGoalByName(goalN);
+        if (goal != null) {
+            return Response.ok(goal).build();
+        } else {
+            return Response.status(404).build();
+        }
+
+    }
+
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void createGoal(String goal) throws Exception {
+        System.out.println("Creating new goal...");
+        GoalImplementation.createGoal(goal);
+    }
+
+    //    @Path("{goalId}")
+    @Path("1")
+    @PUT
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void updateGoal(String goal) throws Exception {
+        System.out.println("Updating goal...");
+        GoalImplementation.updateGoal(1, goal);
+    }
+
+    //    @Path("{goalId}")
+    @Path("51")
+    @DELETE
+    @Produces({MediaType.APPLICATION_JSON})
+    public void deleteGoal() throws Exception {
+        System.out.println("Deleting goal...");
+        GoalImplementation.deleteGoal(52);
     }
 }

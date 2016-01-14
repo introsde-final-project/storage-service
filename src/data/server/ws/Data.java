@@ -222,7 +222,7 @@ public interface Data {
         String goalName);
 
     /**
-     * 
+     *
      * @param goal
      */
     @WebMethod

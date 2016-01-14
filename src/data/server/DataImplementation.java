@@ -26,15 +26,38 @@ public class DataImplementation {
     }
 
     public static String getUserDetail(Integer uId) throws Exception {
-//        Integer uId = mapper.readValue(i, Integer.class);
         User user = data.readUser(uId);
         if (user == null) {
             return null;
         }
         else {
-            String userDetial = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
-            return userDetial;
+            String userDetail = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(user);
+            return userDetail;
         }
     }
+
+    /*public static String getGoalList() throws Exception {
+        List<Goal> goal = data.readGoalList();
+        if (goal == null) {
+            return null;
+        }
+        else {
+            String goalList = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(goal);
+            return goalList;
+        }
+    }
+
+    public static String getGoal(Integer goalId) throws Exception {
+        Goal goal = data.readGoal(goalId);
+        if (goal == null) {
+            return null;
+        }
+        else {
+            String goalDetail = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(goal);
+            return goalDetail;
+        }
+    }*/
+
+
 
 }
