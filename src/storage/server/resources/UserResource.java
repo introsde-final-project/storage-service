@@ -65,4 +65,10 @@ public class UserResource {
         UserImplementation.updateUser(102, user);
     }
 
+    @Path("103")
+    @DELETE
+    public void deleteUser() throws Exception {
+        System.out.println("Deleting user...");
+        UserImplementation.deleteUser(103);
+    }
 }

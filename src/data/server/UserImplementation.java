@@ -3,6 +3,7 @@ package data.server;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import data.server.ws.Data;
 import data.server.ws.DataService;
+import data.server.ws.HealthMeasureHistory;
 import data.server.ws.User;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -59,6 +60,21 @@ public class UserImplementation {
                 userDetail.getBirthDate(),
                 userDetail.getBloodGroup(),
                 userDetail.getAddress()));
+    }
+
+    public static void deleteUser(Integer userId) throws Exception {
+        userData.deleteUser(userId);
+    }
+
+    public static String getUserHistory(Integer uId, String measureType) throws Exception {
+        List<HealthMeasureHistory> healthMeasureHistory = userData.readUserHistory(uId, measureType);
+        if (healthMeasureHistory == null) {
+            return null;
+        }
+        else {
+            String healthMeasureHistoryDetail = userMapper.writerWithDefaultPrettyPrinter().writeValueAsString(healthMeasureHistory);
+            return healthMeasureHistoryDetail;
+        }
     }
 
     public static Holder<User> createNewUser(String firstName,

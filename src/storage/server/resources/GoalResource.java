@@ -78,11 +78,10 @@ public class GoalResource {
     }
 
     //    @Path("{goalId}")
-    @Path("51")
+    @Path("54")
     @DELETE
-    @Produces({MediaType.APPLICATION_JSON})
     public void deleteGoal() throws Exception {
         System.out.println("Deleting goal...");
-        GoalImplementation.deleteGoal(52);
+        GoalImplementation.deleteGoal(54);
     }
 }

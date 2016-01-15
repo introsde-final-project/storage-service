@@ -77,11 +77,10 @@ public class ActivityResource {
     }
 
     //    @Path("{goalId}")
-    @Path("102")
+    @Path("101")
     @DELETE
-    @Produces({MediaType.APPLICATION_JSON})
     public void deleteActivity() throws Exception {
         System.out.println("Deleting activity...");
-        ActivityImplementation.deleteActivity(102);
+        ActivityImplementation.deleteActivity(101);
     }
 }
