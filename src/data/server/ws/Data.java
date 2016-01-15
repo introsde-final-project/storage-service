@@ -54,7 +54,7 @@ public interface Data {
         int uId);
 
     /**
-     * 
+     *
      * @param user
      */
     @WebMethod

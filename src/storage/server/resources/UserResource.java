@@ -1,12 +1,10 @@
 package storage.server.resources;
 
-import data.server.DataImplementation;
+import data.server.UserImplementation;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 
 /**
@@ -25,7 +23,7 @@ public class UserResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getListOfUser() throws Exception {
-        String userList = DataImplementation.getListOfUser();
+        String userList = UserImplementation.getListOfUser();
         if (userList != null) {
             return Response.ok(userList).build();
         }
@@ -35,11 +33,11 @@ public class UserResource {
     }
 
     //    @Path("{uId}")
-    @Path("1")
+    @Path("102")
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getUserDetail() throws Exception {
-        String user = DataImplementation.getUserDetail(1);
+        String user = UserImplementation.getUserDetail(102);
         if (user != null) {
             return Response.ok(user).build();
         }
@@ -47,6 +45,24 @@ public class UserResource {
             return Response.status(404).build();
         }
 
+    }
+
+    @POST
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void createUser(String user) throws Exception {
+        System.out.println("Creating new user...");
+        UserImplementation.createUser(user);
+    }
+
+    //    @Path("{goalId}")
+    @Path("102")
+    @PUT
+    @Produces({MediaType.APPLICATION_JSON})
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void updateGoal(String user) throws Exception {
+        System.out.println("Updating user...");
+        UserImplementation.updateUser(102, user);
     }
 
 }
