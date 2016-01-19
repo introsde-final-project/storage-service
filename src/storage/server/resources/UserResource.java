@@ -32,12 +32,14 @@ public class UserResource {
         }
     }
 
-    //    @Path("{uId}")
-    @Path("102")
+    @Path("{uId}")
+//    @Path("102")
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response getUserDetail() throws Exception {
-        String user = UserImplementation.getUserDetail(102);
+    public Response getUserDetail(@PathParam("uId") int uId) throws Exception {
+        System.out.println("#####################");
+        System.out.println(uId);
+        String user = UserImplementation.getUserDetail(uId);
         if (user != null) {
             return Response.ok(user).build();
         }

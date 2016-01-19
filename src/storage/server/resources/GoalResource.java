@@ -28,13 +28,13 @@ public class GoalResource {
         }
     }
 
-    //    @Path("{goalId}")
-    @Path("1")
+    @Path("{goalId}")
+//    @Path("1")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getGoalById() throws Exception {
+    public Response getGoalById(@PathParam("goalId") int goalId) throws Exception {
         System.out.println("Getting goal with id: 1 ...");
-        String goal = GoalImplementation.getGoalById(1);
+        String goal = GoalImplementation.getGoalById(goalId);
         if (goal != null) {
             return Response.ok(goal).build();
         } else {
@@ -44,13 +44,13 @@ public class GoalResource {
     }
 
     //    @Path("{goalName}")
-    String goalN = "dec-weight";
-    @Path("dec-weight")
+//    String goalN = "dec-weight";
+    @Path("name/{goalName}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getGoalByName() throws Exception {
-        System.out.println("Getting goal with the name: " + goalN +" ...");
-        String goal = GoalImplementation.getGoalByName(goalN);
+    public Response getGoalByName(@PathParam("goalName") String goalName) throws Exception {
+        System.out.println("Getting goal with the name: " + goalName +" ...");
+        String goal = GoalImplementation.getGoalByName(goalName);
         if (goal != null) {
             return Response.ok(goal).build();
         } else {
@@ -67,21 +67,19 @@ public class GoalResource {
         GoalImplementation.createGoal(goal);
     }
 
-    //    @Path("{goalId}")
-    @Path("1")
+    @Path("{goalId}")
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void updateGoal(String goal) throws Exception {
+    public void updateGoal(@PathParam("goalId") int goalId, String goal) throws Exception {
         System.out.println("Updating goal...");
-        GoalImplementation.updateGoal(1, goal);
+        GoalImplementation.updateGoal(goalId, goal);
     }
 
-    //    @Path("{goalId}")
-    @Path("54")
+    @Path("{goalId}")
     @DELETE
-    public void deleteGoal() throws Exception {
+    public void deleteGoal(@PathParam("goalId") int goalId) throws Exception {
         System.out.println("Deleting goal...");
-        GoalImplementation.deleteGoal(54);
+        GoalImplementation.deleteGoal(goalId);
     }
 }
