@@ -33,12 +33,9 @@ public class UserResource {
     }
 
     @Path("{uId}")
-//    @Path("102")
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getUserDetail(@PathParam("uId") int uId) throws Exception {
-        System.out.println("#####################");
-        System.out.println(uId);
         String user = UserImplementation.getUserDetail(uId);
         if (user != null) {
             return Response.ok(user).build();
@@ -57,20 +54,24 @@ public class UserResource {
         UserImplementation.createUser(user);
     }
 
-    //    @Path("{goalId}")
-    @Path("102")
+    @Path("{uId}")
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void updateGoal(String user) throws Exception {
+    public void updateGoal(@PathParam("uId") int uId, String user) throws Exception {
         System.out.println("Updating user...");
-        UserImplementation.updateUser(102, user);
+        UserImplementation.updateUser(uId, user);
     }
 
-    @Path("103")
+    @Path("{uId}")
     @DELETE
-    public void deleteUser() throws Exception {
+    public void deleteUser(@PathParam("uId") int uId) throws Exception {
         System.out.println("Deleting user...");
-        UserImplementation.deleteUser(103);
+        UserImplementation.deleteUser(uId);
+    }
+
+    @Path("{uId}/{measuretype}")
+    public HealthMeasureHistoryResource getUserHealthMeasureHistory(@PathParam("uId") int uId, @PathParam("measuretype") String measuretype) {
+        return new HealthMeasureHistoryResource(uriInfo, request, uId, measuretype);
     }
 }

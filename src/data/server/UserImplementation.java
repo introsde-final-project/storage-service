@@ -106,15 +106,25 @@ public class UserImplementation {
                                                 String address) {
         User user = new User();
         user.setUId(uId);
-        user.setFirstName(firstname);
-        user.setLastName(lastname);
-        try {
-            user.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(String.valueOf(birthdate)));
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
+        if (firstname!= null) {
+            user.setFirstName(firstname);
         }
-        user.setBloodGroup(bloodGroup);
-        user.setAddress(address);
+        if (lastname != null) {
+            user.setLastName(lastname);
+        }
+        if (birthdate != null) {
+            try {
+                user.setBirthDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(String.valueOf(birthdate)));
+            } catch (DatatypeConfigurationException e) {
+                e.printStackTrace();
+            }
+        }
+        if(bloodGroup != null) {
+            user.setBloodGroup(bloodGroup);
+        }
+        if (address != null) {
+            user.setAddress(address);
+        }
         Holder<User> userHolder = new Holder<User>(user);
         return userHolder;
     }
