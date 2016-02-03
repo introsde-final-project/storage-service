@@ -1,12 +1,14 @@
 package storage.server.resources;
 
 import data.server.ActivityImplementation;
+import data.server.ws.Activity;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by bishruti on 1/14/16.
@@ -20,7 +22,7 @@ public class ActivityResource {
     @Produces({MediaType.APPLICATION_JSON})
     public Response getActivityList() throws Exception {
         System.out.println("Getting the list of activities...");
-        String activityList = ActivityImplementation.getActivityList();
+        List<Activity> activityList = ActivityImplementation.getActivityList();
         if (activityList != null) {
             return Response.ok(activityList).build();
         } else {
@@ -28,13 +30,12 @@ public class ActivityResource {
         }
     }
 
-    //    @Path("{activityId}")
-    @Path("101")
+    @Path("{activityId}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getActivityById() throws Exception {
+    public Response getActivityById(@PathParam("activityId") int activityId) throws Exception {
         System.out.println("Getting activity with id: 1 ...");
-        String activity = ActivityImplementation.getActivityById(101);
+        Activity activity = ActivityImplementation.getActivityById(activityId);
         if (activity != null) {
             return Response.ok(activity).build();
         } else {
@@ -42,14 +43,12 @@ public class ActivityResource {
         }
     }
 
-    //    @Path("{activityName}")
-    String activityN = "walk-green";
-    @Path("walk-green")
+    @Path("name/{activityName}")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getActivityByName() throws Exception {
-        System.out.println("Getting activity with the name: " + activityN +" ...");
-        String activity = ActivityImplementation.getActivityByName(activityN);
+    public Response getActivityByName(@PathParam("activityName") String activityName) throws Exception {
+        System.out.println("Getting activity with the name: " + activityName +" ...");
+        Activity activity = ActivityImplementation.getActivityByName(activityName);
         if (activity != null) {
             return Response.ok(activity).build();
         } else {
@@ -61,26 +60,24 @@ public class ActivityResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void createActivity(String activity) throws Exception {
+    public void createActivity(Activity activity) throws Exception {
         System.out.println("Creating new activity...");
         ActivityImplementation.createActivity(activity);
     }
 
-    //    @Path("{goalId}")
-    @Path("1")
+    @Path("{activityId}")
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void updateActivity(String activity) throws Exception {
+    public void updateActivity(@PathParam("activityId") int activityId, Activity activity) throws Exception {
         System.out.println("Updating activity...");
-        ActivityImplementation.updateActivity(1, activity);
+        ActivityImplementation.updateActivity(activityId, activity);
     }
 
-    //    @Path("{goalId}")
-    @Path("101")
+    @Path("{activityId}")
     @DELETE
-    public void deleteActivity() throws Exception {
+    public void deleteActivity(@PathParam("activityId") int activityId) throws Exception {
         System.out.println("Deleting activity...");
-        ActivityImplementation.deleteActivity(101);
+        ActivityImplementation.deleteActivity(activityId);
     }
 }

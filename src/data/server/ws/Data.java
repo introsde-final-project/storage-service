@@ -147,7 +147,7 @@ public interface Data {
         Holder<HealthMeasureHistory> measure);
 
     /**
-     * 
+     * @param hmhId
      * @param uId
      * @param measure
      */
@@ -156,10 +156,10 @@ public interface Data {
     @ResponseWrapper(localName = "updateUserMeasureResponse", targetNamespace = "http://ws.server.data/", className = "data.server.ws.UpdateUserMeasureResponse")
     @Action(input = "http://ws.server.data/Data/updateUserMeasureRequest", output = "http://ws.server.data/Data/updateUserMeasureResponse")
     public void updateUserMeasure(
-        @WebParam(name = "uId", targetNamespace = "")
-        int uId,
-        @WebParam(name = "measure", targetNamespace = "", mode = WebParam.Mode.INOUT)
-        Holder<HealthMeasureHistory> measure);
+            @WebParam(name = "uId", targetNamespace = "")
+            int uId,
+            @WebParam(name = "measure", targetNamespace = "", mode = WebParam.Mode.INOUT)
+            Holder<HealthMeasureHistory> measure);
 
     /**
      * 

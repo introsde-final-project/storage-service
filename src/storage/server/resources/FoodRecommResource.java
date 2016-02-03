@@ -1,12 +1,14 @@
 package storage.server.resources;
 
 import storage.server.endpoint.FoodRecommendation;
+import storage.server.model.FoodSuggestion;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -21,8 +23,8 @@ import javax.ws.rs.core.Response;
 public class FoodRecommResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getFoodRecomm() {
-        String foodRecomm = FoodRecommendation.getFoodRecomm();
+    public Response getFoodRecomm(@QueryParam("foodType") String foodType) {
+        FoodSuggestion foodRecomm = FoodRecommendation.getFoodRecomm(foodType);
         if (foodRecomm != null) {
             return Response.ok(foodRecomm).build();
         }

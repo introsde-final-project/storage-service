@@ -1,6 +1,8 @@
 package storage.server.resources;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import storage.server.endpoint.Quote;
+import storage.server.model.DailyQuote;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -20,8 +22,8 @@ import javax.ws.rs.core.Response;
 public class QuoteResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
-    public Response getQuote() {
-        String quote = Quote.getQuote();
+    public Response getQuote() throws JsonProcessingException {
+        DailyQuote quote = Quote.getQuote();
         if (quote != null) {
             return Response.ok(quote).build();
         }

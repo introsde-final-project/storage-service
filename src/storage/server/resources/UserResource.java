@@ -1,11 +1,13 @@
 package storage.server.resources;
 
 import data.server.UserImplementation;
+import data.server.ws.User;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
+import java.util.List;
 
 /**
  * Created by bishruti on 1/14/16.
@@ -23,7 +25,7 @@ public class UserResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getListOfUser() throws Exception {
-        String userList = UserImplementation.getListOfUser();
+        List<User> userList = UserImplementation.getListOfUser();
         if (userList != null) {
             return Response.ok(userList).build();
         }
@@ -36,7 +38,7 @@ public class UserResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getUserDetail(@PathParam("uId") int uId) throws Exception {
-        String user = UserImplementation.getUserDetail(uId);
+        User user = UserImplementation.getUserDetail(uId);
         if (user != null) {
             return Response.ok(user).build();
         }
@@ -49,7 +51,7 @@ public class UserResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void createUser(String user) throws Exception {
+    public void createUser(User user) throws Exception {
         System.out.println("Creating new user...");
         UserImplementation.createUser(user);
     }
@@ -58,7 +60,7 @@ public class UserResource {
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void updateGoal(@PathParam("uId") int uId, String user) throws Exception {
+    public void updateGoal(@PathParam("uId") int uId, User user) throws Exception {
         System.out.println("Updating user...");
         UserImplementation.updateUser(uId, user);
     }
@@ -71,7 +73,8 @@ public class UserResource {
     }
 
     @Path("{uId}/{measuretype}")
-    public HealthMeasureHistoryResource getUserHealthMeasureHistory(@PathParam("uId") int uId, @PathParam("measuretype") String measuretype) {
+    public HealthMeasureHistoryResource getUserHistory(@PathParam("uId") int uId, @PathParam("measuretype") String measuretype) {
         return new HealthMeasureHistoryResource(uriInfo, request, uId, measuretype);
     }
+
 }

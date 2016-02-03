@@ -16,47 +16,42 @@ public class ActivityImplementation {
     public static Data activityData = service.getDataImplementationPort();
     public static ObjectMapper activityMapper = new ObjectMapper();
 
-    public static String getActivityList() throws Exception {
+    public static List<Activity> getActivityList() throws Exception {
         List<Activity> activity = activityData.readActivityList();
         if (activity == null) {
             return null;
         }
         else {
-            String activityList = activityMapper.writerWithDefaultPrettyPrinter().writeValueAsString(activity);
-            return activityList;
+            return activity;
         }
     }
 
-    public static String getActivityById(Integer activityId) throws Exception {
+    public static Activity getActivityById(Integer activityId) throws Exception {
         Activity activity = activityData.readActivity(activityId);
         if (activity == null) {
             return null;
         }
         else {
-            String activityDetail = activityMapper.writerWithDefaultPrettyPrinter().writeValueAsString(activity);
-            return activityDetail;
+            return activity;
         }
     }
 
-    public static String getActivityByName(String activityName) throws Exception {
+    public static Activity getActivityByName(String activityName) throws Exception {
         Activity activity = activityData.readActivityByName(activityName);
         if (activity == null) {
             return null;
         }
         else {
-            String activityDetail = activityMapper.writerWithDefaultPrettyPrinter().writeValueAsString(activity);
-            return activityDetail;
+            return activity;
         }
     }
 
-    public static void createActivity(String activity) throws Exception {
-        Activity activityDetail = activityMapper.readValue(activity, Activity.class);
-        activityData.createActivity(createNewActivity(activityDetail.getActivityName(), activityDetail.getActivityDescription()));
+    public static void createActivity(Activity activity) throws Exception {
+        activityData.createActivity(createNewActivity(activity.getActivityName(), activity.getActivityDescription()));
     }
 
-    public static void updateActivity(int activityId, String activity) throws Exception {
-        Activity activityDetail = activityMapper.readValue(activity, Activity.class);
-        activityData.updateActivity(updateActivityDetails(activityId, activityDetail.getActivityName(), activityDetail.getActivityDescription()));
+    public static void updateActivity(int activityId, Activity activity) throws Exception {
+        activityData.updateActivity(updateActivityDetails(activityId, activity.getActivityName(), activity.getActivityDescription()));
     }
 
     public static void deleteActivity(Integer activityId) throws Exception {

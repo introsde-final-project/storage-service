@@ -1,14 +1,11 @@
 
 package data.server.ws;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlSchemaType;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -62,7 +59,7 @@ public class User {
     protected String firstName;
     protected String lastName;
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar birthDate;
+    protected Date birthDate;
     protected String bloodGroup;
     protected String address;
     protected User.CurrentHealth currentHealth;
@@ -139,7 +136,7 @@ public class User {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
@@ -151,7 +148,7 @@ public class User {
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setBirthDate(XMLGregorianCalendar value) {
+    public void setBirthDate(Date value) {
         this.birthDate = value;
     }
 

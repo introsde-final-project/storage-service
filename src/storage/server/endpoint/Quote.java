@@ -2,6 +2,7 @@ package storage.server.endpoint;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.json.JSONObject;
+import storage.server.model.DailyQuote;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -19,19 +20,20 @@ public class Quote {
     Quote quote = new Quote();
     private static WebTarget service;
     private static Response response;
-
+    private String quoteMessage;
     private static URI getBaseURI() {
         return UriBuilder.fromUri("http://127.0.1.1:8006/adapter/quote").build();
     }
-    public static String getQuote() {
+
+    public static DailyQuote getQuote() {
         ClientConfig clientConfig = new ClientConfig();
         Client client = ClientBuilder.newClient(clientConfig);
         service = client.target(getBaseURI());
         response = service.request().accept(MediaType.APPLICATION_JSON).get();
         String quote = response.readEntity(String.class);
         JSONObject jsonObj = new JSONObject(quote);
-        String quotation = jsonObj.get("quote").toString();
-        System.out.println(quotation);
-        return quotation;
+        DailyQuote dailyQuote = new DailyQuote();
+        dailyQuote.setQuote(jsonObj.get("quote").toString());
+        return dailyQuote;
     }
 }

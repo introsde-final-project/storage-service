@@ -16,47 +16,42 @@ public class GoalImplementation {
     public static Data goalData = service.getDataImplementationPort();
     public static ObjectMapper goalMapper = new ObjectMapper();
 
-    public static String getGoalList() throws Exception {
+    public static List<Goal> getGoalList() throws Exception {
         List<Goal> goal = goalData.readGoalList();
         if (goal == null) {
             return null;
         }
         else {
-            String goalList = goalMapper.writerWithDefaultPrettyPrinter().writeValueAsString(goal);
-            return goalList;
+            return goal;
         }
     }
 
-    public static String getGoalById(Integer goalId) throws Exception {
+    public static Goal getGoalById(Integer goalId) throws Exception {
         Goal goal = goalData.readGoal(goalId);
         if (goal == null) {
             return null;
         }
         else {
-            String goalDetail = goalMapper.writerWithDefaultPrettyPrinter().writeValueAsString(goal);
-            return goalDetail;
+            return goal;
         }
     }
 
-    public static String getGoalByName(String goalName) throws Exception {
+    public static Goal getGoalByName(String goalName) throws Exception {
         Goal goal = goalData.readGoalByName(goalName);
         if (goal == null) {
             return null;
         }
         else {
-            String goalDetail = goalMapper.writerWithDefaultPrettyPrinter().writeValueAsString(goal);
-            return goalDetail;
+            return goal;
         }
     }
 
-    public static void createGoal(String goal) throws Exception {
-        Goal goalDetail = goalMapper.readValue(goal, Goal.class);
-        goalData.createGoal(createNewGoal(goalDetail.getGoalName(), goalDetail.getGoalDescription()));
+    public static void createGoal(Goal goal) throws Exception {
+        goalData.createGoal(createNewGoal(goal.getGoalName(), goal.getGoalDescription()));
     }
 
-    public static void updateGoal(int goalId, String goal) throws Exception {
-        Goal goalDetail = goalMapper.readValue(goal, Goal.class);
-        goalData.updateGoal(updateGoalDetails(goalId, goalDetail.getGoalName(), goalDetail.getGoalDescription()));
+    public static void updateGoal(int goalId, Goal goal) throws Exception {
+        goalData.updateGoal(updateGoalDetails(goalId, goal.getGoalName(), goal.getGoalDescription()));
     }
 
     public static void deleteGoal(Integer goalId) throws Exception {
