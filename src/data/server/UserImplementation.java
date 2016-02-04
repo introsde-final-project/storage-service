@@ -13,10 +13,15 @@ import java.util.List;
 /**
  * Created by bishruti on 1/14/16.
  */
+
 public class UserImplementation {
     public static DataService service = new DataService();
     public static Data userData = service.getDataImplementationPort();
     public static ObjectMapper userMapper = new ObjectMapper();
+
+    /*  Request to obtain all the users and their details in the list.
+        Expected Input: -
+        Expected Output: List of users (String) */
 
     public static List<User> getListOfUser() throws Exception {
         List<User> userList = userData.readUserList();
@@ -27,6 +32,11 @@ public class UserImplementation {
         }
     }
 
+    /* Request to obtain a user and the details associated to that user from the list.
+       Expected Input: uId (Integer)
+       Expected Output: User and the details associated to that user. (String) */
+
+
     public static User getUserDetail(int uId) throws Exception {
         User user = userData.readUser(uId);
         if (user == null) {
@@ -35,6 +45,10 @@ public class UserImplementation {
             return user;
         }
     }
+
+    /*  Request to add a new user in the list.
+        Expected Input: User (Object)
+        Expected Output: Newly created User with the details associated to that user. (String) */
 
     public static void createUser(User userDetail) throws Exception {
         userData.createUser(createNewUser(userDetail.getFirstName(),
@@ -45,6 +59,10 @@ public class UserImplementation {
                 userDetail.getCurrentHealth()));
     }
 
+    /*  Request to edit a user in the list.
+        Expected Input: uId (Integer) and User (Object)
+        Expected Output: Edited User with the details associated to that user. (String) */
+
     public static void updateUser(int userId, User userDetail) throws Exception {
         userData.updateUser(updateUserDetail(userId,
                 userDetail.getFirstName(),
@@ -54,9 +72,18 @@ public class UserImplementation {
                 userDetail.getAddress()));
     }
 
+    /*  Request to delete a user from the list.
+        Expected Input: uId (Integer)
+        Expected Output: Response Message. */
+
     public static void deleteUser(int userId) throws Exception {
         userData.deleteUser(userId);
     }
+
+     /* Request to obtain all measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+                       measureType (String)
+       Expected Output: List of details of measure types. (String) */
 
     public static List<HealthMeasureHistory> getUserHistory(int uId, String measureType) throws Exception {
         List<HealthMeasureHistory> healthMeasureHistory = userData.readUserHistory(uId, measureType);
@@ -67,6 +94,12 @@ public class UserImplementation {
         }
     }
 
+    /*  Request to obtain measure details about a particular measure of a user in the list.
+        Expected Input: uId (Integer)
+                        measureType (String)
+                        hmhId (Integer)
+        Expected Output: Details of a particular measure. (String) */
+
     public static List<HealthMeasureHistory> getUserMeasure(int uId, String measureType, int hmhId) throws Exception {
         List<HealthMeasureHistory> healthMeasureHistory = userData.readUserMeasure(uId, measureType, hmhId);
         if (healthMeasureHistory == null) {
@@ -76,11 +109,26 @@ public class UserImplementation {
         }
     }
 
+    /* Request to create measure details about a measure of a user in the list.
+       Expected Input: uId (Integer)
+       measureType (String)
+       MeasureDetails (Object)
+       Expected Output:
+       List of newly created measure. (String) */
+
     public static void createUserMeasure(int uId, HealthMeasureHistory healthMeasureHistoryDetails) throws Exception {
         userData.saveUserMeasure(uId, createNewHealthMeasureHistory(healthMeasureHistoryDetails.getMeasureType(),
                 healthMeasureHistoryDetails.getMeasureValue(),
                 healthMeasureHistoryDetails.getMeasureValueType()));
     }
+
+    /*  Request to update measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+        measureType (String)
+        hmhId (Integer)
+        MeasureDetails (Object)
+        Expected Output:
+        List of updated measure. (String) */
 
     public static void updateUserMeasure(int uId, HealthMeasureHistory healthMeasureHistoryDetails, int hmhId) throws Exception {
         userData.updateUserMeasure(uId, updateHealthMeasureHistory(hmhId, healthMeasureHistoryDetails.getMeasureType(),
@@ -88,9 +136,18 @@ public class UserImplementation {
                 healthMeasureHistoryDetails.getMeasureValueType()));
     }
 
+    /*  Request to delete measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+        hmhId (Integer)
+        Expected Output: Response Message. */
+
     public static void deleteUserMeasure(int uId, int hmhId) throws Exception {
         userData.deleteMeasure(uId, hmhId);
     }
+
+    //**********************************************************************************************************
+    // HELPER METHODS
+    //**********************************************************************************************************
 
     public static Holder<User> createNewUser(String firstName,
                                              String lastName,

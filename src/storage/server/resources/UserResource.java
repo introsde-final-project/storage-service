@@ -22,6 +22,10 @@ public class UserResource {
     @Context
     Request request;
 
+    /*  Request to obtain all the users and their details in the list.
+        Expected Input: -
+        Expected Output: List of users (String) */
+
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getListOfUser() throws Exception {
@@ -33,6 +37,10 @@ public class UserResource {
             return Response.status(404).build();
         }
     }
+
+    /* Request to obtain a user and the details associated to that user from the list.
+       Expected Input: uId (Integer)
+       Expected Output: User and the details associated to that user. (String) */
 
     @Path("{uId}")
     @GET
@@ -48,6 +56,10 @@ public class UserResource {
 
     }
 
+    /*  Request to add a new user in the list.
+        Expected Input: User (Object)
+        Expected Output: Newly created User with the details associated to that user. (String) */
+
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -56,14 +68,22 @@ public class UserResource {
         UserImplementation.createUser(user);
     }
 
+     /*  Request to edit a user in the list.
+        Expected Input: uId (Integer) and User (Object)
+        Expected Output: Edited User with the details associated to that user. (String) */
+
     @Path("{uId}")
     @PUT
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void updateGoal(@PathParam("uId") int uId, User user) throws Exception {
+    public void updateUser(@PathParam("uId") int uId, User user) throws Exception {
         System.out.println("Updating user...");
         UserImplementation.updateUser(uId, user);
     }
+
+    /*  Request to delete a user from the list.
+        Expected Input: uId (Integer)
+        Expected Output: Response Message. */
 
     @Path("{uId}")
     @DELETE
@@ -72,6 +92,7 @@ public class UserResource {
         UserImplementation.deleteUser(uId);
     }
 
+    /* Navigates to HealthMeasureHistoryResource if both uId and measuretype is obtained */
     @Path("{uId}/{measuretype}")
     public HealthMeasureHistoryResource getUserHistory(@PathParam("uId") int uId, @PathParam("measuretype") String measuretype) {
         return new HealthMeasureHistoryResource(uriInfo, request, uId, measuretype);

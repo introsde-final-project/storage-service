@@ -20,10 +20,14 @@ public class Quote {
     Quote quote = new Quote();
     private static WebTarget service;
     private static Response response;
-    private String quoteMessage;
+
     private static URI getBaseURI() {
         return UriBuilder.fromUri("http://127.0.1.1:8006/adapter/quote").build();
     }
+
+    /*  Request to obtain quote.
+       Expected Input: -
+       Expected Output: Quote (String) */
 
     public static DailyQuote getQuote() {
         ClientConfig clientConfig = new ClientConfig();

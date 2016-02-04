@@ -25,6 +25,11 @@ public class HealthMeasureHistoryResource {
         this.measuretype = measuretype;
     }
 
+    /* Request to obtain all measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+                       measureType (String)
+       Expected Output: List of details of measure types. (String) */
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getUserHistory() throws Exception {
@@ -36,6 +41,12 @@ public class HealthMeasureHistoryResource {
             return Response.status(404).build();
         }
     }
+
+    /*  Request to obtain measure details about a particular measure of a user in the list.
+        Expected Input: uId (Integer)
+                        measureType (String)
+                        hmhId (Integer)
+        Expected Output: Details of a particular measure. (String) */
 
     @Path("/{hmhId}")
     @GET
@@ -50,6 +61,13 @@ public class HealthMeasureHistoryResource {
         }
     }
 
+    /* Request to create measure details about a measure of a user in the list.
+       Expected Input: uId (Integer)
+       measureType (String)
+       MeasureDetails (Object)
+       Expected Output:
+       List of newly created measure. (String) */
+
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -57,6 +75,14 @@ public class HealthMeasureHistoryResource {
         System.out.println("Creating new healthMeasureHistory...");
         UserImplementation.createUserMeasure(uId, healthMeasureHistory);
     }
+
+    /*  Request to update measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+        measureType (String)
+        hmhId (Integer)
+        MeasureDetails (Object)
+        Expected Output:
+        List of updated measure. (String) */
 
     @Path("/{hmhId}")
     @PUT
@@ -66,6 +92,11 @@ public class HealthMeasureHistoryResource {
         System.out.println("Updating healthMeasureHistory...");
         UserImplementation.updateUserMeasure(uId, healthMeasureHistory, hmhId);
     }
+
+    /*  Request to delete measure details about a measure of a user in the list.
+        Expected Input: uId (Integer)
+        hmhId (Integer)
+        Expected Output: Response Message. */
 
     @Path("/{hmhId}")
     @DELETE

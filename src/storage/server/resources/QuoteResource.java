@@ -20,6 +20,11 @@ import javax.ws.rs.core.Response;
 
 @Path("/quote")
 public class QuoteResource {
+
+    /*  Request to obtain quote.
+   Expected Input: -
+   Expected Output: Quote (String) */
+
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
     public Response getQuote() throws JsonProcessingException {

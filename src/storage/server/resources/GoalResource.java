@@ -18,6 +18,11 @@ import java.util.List;
 @LocalBean // Works only inside a Java EE application
 @Path("/goal")
 public class GoalResource {
+
+    /*  Request to obtain all the goals and their details in the list.
+        Expected Input: -
+        Expected Output: List of goals (String) */
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getGoalList() throws Exception {
@@ -29,6 +34,10 @@ public class GoalResource {
             return Response.status(404).build();
         }
     }
+
+    /* Request to obtain a goal and the details associated to that goal from the list.
+       Expected Input: goalId (Integer)
+       Expected Output: Goal and the details associated to that goal. (String) */
 
     @Path("{goalId}")
     @GET
@@ -42,6 +51,10 @@ public class GoalResource {
             return Response.status(404).build();
         }
     }
+
+     /* Request to obtain a goal and the details associated to that goal from the list by goalName.
+        Expected Input: goalName (String)
+        Expected Output: Goal and the details associated to that goal. (String) */
 
     @Path("name/{goalName}")
     @GET
@@ -57,6 +70,10 @@ public class GoalResource {
 
     }
 
+    /*  Request to add a new goal in the list.
+        Expected Input: Goal (Object)
+        Expected Output: Newly created Goal with the details associated to that goal. (String) */
+
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -64,6 +81,10 @@ public class GoalResource {
         System.out.println("Creating new goal...");
         GoalImplementation.createGoal(goal);
     }
+
+    /*  Request to edit a goal in the list.
+        Expected Input: goalId (Integer) and Goal (Object)
+        Expected Output: Edited Goal with the details associated to that goal. (String) */
 
     @Path("{goalId}")
     @PUT
@@ -73,6 +94,10 @@ public class GoalResource {
         System.out.println("Updating goal...");
         GoalImplementation.updateGoal(goalId, goal);
     }
+
+    /*  Request to delete a goal from the list.
+        Expected Input: goalId (Integer)
+        Expected Output: Response Message. */
 
     @Path("{goalId}")
     @DELETE

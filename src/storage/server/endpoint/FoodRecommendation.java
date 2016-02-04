@@ -30,6 +30,10 @@ public class FoodRecommendation {
                 "http://127.0.1.1:8006/adapter/foodrecomm?foodType=" + foodType).build();
     }
 
+      /*  Request to obtain Food Recommendation.
+       Expected Input: -
+       Expected Output: Food Recommendation (String) */
+
     public static FoodSuggestion getFoodRecomm(String foodType) {
         ClientConfig clientConfig = new ClientConfig();
         Client client = ClientBuilder.newClient(clientConfig);

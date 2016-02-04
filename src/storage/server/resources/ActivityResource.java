@@ -18,6 +18,11 @@ import java.util.List;
 @LocalBean // Works only inside a Java EE application
 @Path("/activity")
 public class ActivityResource {
+
+    /* Request to obtain all the activities and their details in the list.
+       Expected Input: -
+       Expected Output: List of activities (String) */
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getActivityList() throws Exception {
@@ -29,6 +34,10 @@ public class ActivityResource {
             return Response.status(404).build();
         }
     }
+
+    /* Request to obtain an activity and the details associated to that activity from the list.
+       Expected Input: activityId (Integer)
+       Expected Output: Activity and the details associated to that activity. (String) */
 
     @Path("{activityId}")
     @GET
@@ -42,6 +51,10 @@ public class ActivityResource {
             return Response.status(404).build();
         }
     }
+
+    /* Request to obtain an activity and the details associated to that activity from the list by activityName.
+       Expected Input: activityName (String)
+       Expected Output: Activity and the details associated to that activity. (String) */
 
     @Path("name/{activityName}")
     @GET
@@ -57,6 +70,10 @@ public class ActivityResource {
 
     }
 
+    /*  Request to add a new activity in the list.
+        Expected Input: Activity (Object)
+        Expected Output: Newly created Activity with the details associated to that activity. (String) */
+
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
@@ -64,6 +81,10 @@ public class ActivityResource {
         System.out.println("Creating new activity...");
         ActivityImplementation.createActivity(activity);
     }
+
+    /*  Request to edit an activity in the list.
+        Expected Input: activityId (Integer) and Activity (Object)
+        Expected Output: Edited activity with the details associated to that activity. (String) */
 
     @Path("{activityId}")
     @PUT
@@ -73,6 +94,10 @@ public class ActivityResource {
         System.out.println("Updating activity...");
         ActivityImplementation.updateActivity(activityId, activity);
     }
+
+    /*  Request to delete an activity from the list.
+        Expected Input: activityId (Integer)
+        Expected Output: Response Message. */
 
     @Path("{activityId}")
     @DELETE

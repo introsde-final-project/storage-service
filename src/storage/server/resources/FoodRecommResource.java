@@ -21,6 +21,11 @@ import javax.ws.rs.core.Response;
 @Path("/foodrecomm")
 
 public class FoodRecommResource {
+
+    /*  Request to obtain Food Recommendation.
+       Expected Input: -
+       Expected Output: Food Recommendation (String) */
+    
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getFoodRecomm(@QueryParam("foodType") String foodType) {
