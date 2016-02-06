@@ -43,7 +43,7 @@ public class GoalResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getGoalById(@PathParam("goalId") int goalId) throws Exception {
-        System.out.println("Getting goal with id: 1 ...");
+        System.out.println("Getting goal with id: "+ goalId +" ...");
         Goal goal = GoalImplementation.getGoalById(goalId);
         if (goal != null) {
             return Response.ok(goal).build();

@@ -58,10 +58,11 @@ public interface Data {
      * @param user
      */
     @WebMethod
+    @WebResult(name = "user", targetNamespace = "")
     @RequestWrapper(localName = "createUser", targetNamespace = "http://ws.server.data/", className = "data.server.ws.CreateUser")
     @ResponseWrapper(localName = "createUserResponse", targetNamespace = "http://ws.server.data/", className = "data.server.ws.CreateUserResponse")
     @Action(input = "http://ws.server.data/Data/createUserRequest", output = "http://ws.server.data/Data/createUserResponse")
-    public void createUser(
+    public User createUser(
         @WebParam(name = "user", targetNamespace = "", mode = WebParam.Mode.INOUT)
         Holder<User> user);
 

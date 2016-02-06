@@ -31,6 +31,7 @@ public class UserResource {
     public Response getListOfUser() throws Exception {
         List<User> userList = UserImplementation.getListOfUser();
         if (userList != null) {
+            System.out.println("Generating the list of users...");
             return Response.ok(userList).build();
         }
         else {
@@ -48,6 +49,7 @@ public class UserResource {
     public Response getUserDetail(@PathParam("uId") int uId) throws Exception {
         User user = UserImplementation.getUserDetail(uId);
         if (user != null) {
+            System.out.println("Getting the info of the user with id: " + uId + "...");
             return Response.ok(user).build();
         }
         else {
@@ -63,9 +65,16 @@ public class UserResource {
     @POST
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
-    public void createUser(User user) throws Exception {
+    public Response createUser(User user) throws Exception {
         System.out.println("Creating new user...");
-        UserImplementation.createUser(user);
+        User newUser = UserImplementation.createUser(user);
+        if (newUser != null) {
+            System.out.println("Getting the info of the new user.");
+            return Response.ok(newUser).build();
+        }
+        else {
+            return Response.status(404).build();
+        }
     }
 
      /*  Request to edit a user in the list.

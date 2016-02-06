@@ -50,13 +50,14 @@ public class UserImplementation {
         Expected Input: User (Object)
         Expected Output: Newly created User with the details associated to that user. (String) */
 
-    public static void createUser(User userDetail) throws Exception {
-        userData.createUser(createNewUser(userDetail.getFirstName(),
+    public static User createUser(User userDetail) throws Exception {
+        User newUser = userData.createUser(createNewUser(userDetail.getFirstName(),
                 userDetail.getLastName(),
                 userDetail.getBirthDate(),
                 userDetail.getBloodGroup(),
                 userDetail.getAddress(),
                 userDetail.getCurrentHealth()));
+        return newUser;
     }
 
     /*  Request to edit a user in the list.

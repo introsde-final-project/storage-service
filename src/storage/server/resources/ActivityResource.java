@@ -43,7 +43,7 @@ public class ActivityResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getActivityById(@PathParam("activityId") int activityId) throws Exception {
-        System.out.println("Getting activity with id: 1 ...");
+        System.out.println("Getting activity with id: "+ activityId + " ...");
         Activity activity = ActivityImplementation.getActivityById(activityId);
         if (activity != null) {
             return Response.ok(activity).build();

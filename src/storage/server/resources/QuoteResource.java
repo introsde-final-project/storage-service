@@ -30,6 +30,7 @@ public class QuoteResource {
     public Response getQuote() throws JsonProcessingException {
         DailyQuote quote = Quote.getQuote();
         if (quote != null) {
+            System.out.println("Getting Quote of the day...");
             return Response.ok(quote).build();
         }
         else {

@@ -23,14 +23,15 @@ import javax.ws.rs.core.Response;
 public class FoodRecommResource {
 
     /*  Request to obtain Food Recommendation.
-       Expected Input: -
+       Expected Input: FoodType
        Expected Output: Food Recommendation (String) */
-    
+
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getFoodRecomm(@QueryParam("foodType") String foodType) {
         FoodSuggestion foodRecomm = FoodRecommendation.getFoodRecomm(foodType);
         if (foodRecomm != null) {
+            System.out.println("Getting Food Recommendation...");
             return Response.ok(foodRecomm).build();
         }
         else {

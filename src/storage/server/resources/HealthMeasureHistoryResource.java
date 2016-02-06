@@ -33,9 +33,10 @@ public class HealthMeasureHistoryResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getUserHistory() throws Exception {
-        List<HealthMeasureHistory> userHisotryList = UserImplementation.getUserHistory(uId, measuretype);
-        if (userHisotryList != null) {
-            return Response.ok(userHisotryList).build();
+        List<HealthMeasureHistory> userHistoryList = UserImplementation.getUserHistory(uId, measuretype);
+        if (userHistoryList != null) {
+            System.out.println("Generating list of Health Measure History...");
+            return Response.ok(userHistoryList).build();
         }
         else {
             return Response.status(404).build();
@@ -52,9 +53,10 @@ public class HealthMeasureHistoryResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public Response getUserMeasure(@PathParam("hmhId") int hmhId) throws Exception {
-        List<HealthMeasureHistory> userHisotry = UserImplementation.getUserMeasure(uId, measuretype, hmhId);
-        if (userHisotry != null) {
-            return Response.ok(userHisotry).build();
+        List<HealthMeasureHistory> userHistory = UserImplementation.getUserMeasure(uId, measuretype, hmhId);
+        if (userHistory != null) {
+            System.out.println("Getting details of Health Measure History");
+            return Response.ok(userHistory).build();
         }
         else {
             return Response.status(404).build();
