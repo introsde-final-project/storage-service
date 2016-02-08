@@ -1,7 +1,0 @@
-data.server
-data.server.ws
-storage
-storage.server
-storage.server.endpoint
-storage.server.model
-storage.server.resources
