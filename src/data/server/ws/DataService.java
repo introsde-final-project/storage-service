@@ -1,14 +1,10 @@
 
 package data.server.ws;
 
+import javax.xml.namespace.QName;
+import javax.xml.ws.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-import javax.xml.namespace.QName;
-import javax.xml.ws.Service;
-import javax.xml.ws.WebEndpoint;
-import javax.xml.ws.WebServiceClient;
-import javax.xml.ws.WebServiceException;
-import javax.xml.ws.WebServiceFeature;
 
 
 /**
@@ -30,7 +26,7 @@ public class DataService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://127.0.1.1:8005/data?wsdl");
+            url = new URL("http://data-service.herokuapp.com/data?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
