@@ -24,7 +24,7 @@ public class UserResource {
 
     /*  Request to obtain all the users and their details in the list.
         Expected Input: -
-        Expected Output: List of users (String) */
+        Expected Output: List of users (List) */
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON})
@@ -41,7 +41,7 @@ public class UserResource {
 
     /* Request to obtain a user and the details associated to that user from the list.
        Expected Input: uId (Integer)
-       Expected Output: User and the details associated to that user. (String) */
+       Expected Output: User and the details associated to that user. (Object) */
 
     @Path("{uId}")
     @GET
@@ -60,7 +60,7 @@ public class UserResource {
 
     /*  Request to add a new user in the list.
         Expected Input: User (Object)
-        Expected Output: Newly created User with the details associated to that user. (String) */
+        Expected Output: Newly created User with the details associated to that user. (Object) */
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})
@@ -79,7 +79,7 @@ public class UserResource {
 
      /*  Request to edit a user in the list.
         Expected Input: uId (Integer) and User (Object)
-        Expected Output: Edited User with the details associated to that user. (String) */
+        Expected Output: Response */
 
     @Path("{uId}")
     @PUT
@@ -92,7 +92,7 @@ public class UserResource {
 
     /*  Request to delete a user from the list.
         Expected Input: uId (Integer)
-        Expected Output: Response Message. */
+        Expected Output: Response */
 
     @Path("{uId}")
     @DELETE

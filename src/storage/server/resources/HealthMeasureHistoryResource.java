@@ -28,7 +28,7 @@ public class HealthMeasureHistoryResource {
     /* Request to obtain all measure details about a measure of a user in the list.
         Expected Input: uId (Integer)
                        measureType (String)
-       Expected Output: List of details of measure types. (String) */
+       Expected Output: List of details of measure types. (List) */
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -47,7 +47,7 @@ public class HealthMeasureHistoryResource {
         Expected Input: uId (Integer)
                         measureType (String)
                         hmhId (Integer)
-        Expected Output: Details of a particular measure. (String) */
+        Expected Output: Details of a particular measure. (List) */
 
     @Path("/{hmhId}")
     @GET
@@ -67,8 +67,7 @@ public class HealthMeasureHistoryResource {
        Expected Input: uId (Integer)
        measureType (String)
        MeasureDetails (Object)
-       Expected Output:
-       List of newly created measure. (String) */
+       Expected Output: Response */
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})
@@ -83,8 +82,7 @@ public class HealthMeasureHistoryResource {
         measureType (String)
         hmhId (Integer)
         MeasureDetails (Object)
-        Expected Output:
-        List of updated measure. (String) */
+        Expected Output: Response */
 
     @Path("/{hmhId}")
     @PUT
@@ -98,7 +96,7 @@ public class HealthMeasureHistoryResource {
     /*  Request to delete measure details about a measure of a user in the list.
         Expected Input: uId (Integer)
         hmhId (Integer)
-        Expected Output: Response Message. */
+        Expected Output: Response */
 
     @Path("/{hmhId}")
     @DELETE

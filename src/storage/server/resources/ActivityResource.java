@@ -21,7 +21,7 @@ public class ActivityResource {
 
     /* Request to obtain all the activities and their details in the list.
        Expected Input: -
-       Expected Output: List of activities (String) */
+       Expected Output: List of activities (List) */
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -37,7 +37,7 @@ public class ActivityResource {
 
     /* Request to obtain an activity and the details associated to that activity from the list.
        Expected Input: activityId (Integer)
-       Expected Output: Activity and the details associated to that activity. (String) */
+       Expected Output: Activity and the details associated to that activity. (Object) */
 
     @Path("{activityId}")
     @GET
@@ -54,7 +54,7 @@ public class ActivityResource {
 
     /* Request to obtain an activity and the details associated to that activity from the list by activityName.
        Expected Input: activityName (String)
-       Expected Output: Activity and the details associated to that activity. (String) */
+       Expected Output: Activity and the details associated to that activity. (Object) */
 
     @Path("name/{activityName}")
     @GET
@@ -72,7 +72,7 @@ public class ActivityResource {
 
     /*  Request to add a new activity in the list.
         Expected Input: Activity (Object)
-        Expected Output: Newly created Activity with the details associated to that activity. (String) */
+        Expected Output: Response */
 
     @POST
     @Produces({MediaType.APPLICATION_JSON})
@@ -84,7 +84,7 @@ public class ActivityResource {
 
     /*  Request to edit an activity in the list.
         Expected Input: activityId (Integer) and Activity (Object)
-        Expected Output: Edited activity with the details associated to that activity. (String) */
+        Expected Output: Response */
 
     @Path("{activityId}")
     @PUT
@@ -97,7 +97,7 @@ public class ActivityResource {
 
     /*  Request to delete an activity from the list.
         Expected Input: activityId (Integer)
-        Expected Output: Response Message. */
+        Expected Output: Response */
 
     @Path("{activityId}")
     @DELETE

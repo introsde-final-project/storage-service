@@ -23,7 +23,7 @@ public class QuoteResource {
 
     /*  Request to obtain quote.
    Expected Input: -
-   Expected Output: Quote (String) */
+   Expected Output: Quote (Object) */
 
     @GET
     @Produces({ MediaType.APPLICATION_JSON})

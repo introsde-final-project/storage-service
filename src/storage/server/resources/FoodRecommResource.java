@@ -24,7 +24,7 @@ public class FoodRecommResource {
 
     /*  Request to obtain Food Recommendation.
        Expected Input: FoodType
-       Expected Output: Food Recommendation (String) */
+       Expected Output: Food Recommendation (Object) */
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
