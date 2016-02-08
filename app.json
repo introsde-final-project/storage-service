@@ -1,0 +1,12 @@
+{
+  "name": "Storage Service",
+  "description": "Storage Service",
+  "repository": "https://git.heroku.com/storage-service.git",
+  "env": {
+    "BUILDPACK_URL": "https://github.com/IntroSDE/heroku-buildpack-ant.git",
+    "HEROKU_URL": {
+      "description": "The URL of this Heroku app.",
+      "value": "https://storage-service.herokuapp.com"
+    }
+  } 
+}
